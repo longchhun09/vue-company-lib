@@ -160,11 +160,93 @@
         </code></pre>
       </div>
     </section>
+
+    <!-- LazyImage Component Examples -->
+    <section class="component-section">
+      <h2>LazyImage Component</h2>
+      <p>
+        The LazyImage component optimizes image loading performance by using the Intersection Observer API 
+        to load images only when they enter the viewport. It provides placeholder display while 
+        images are loading and handles loading errors gracefully.
+      </p>
+
+      <div class="demo-row">
+        <div class="demo-item">
+          <h3>Basic Image Loading</h3>
+          <LazyImage 
+            src="https://picsum.photos/400/300" 
+            alt="Random sample image"
+            width="400"
+            height="300"
+          />
+        </div>
+
+        <div class="demo-item">
+          <h3>With Custom Placeholder</h3>
+          <LazyImage 
+            src="https://picsum.photos/400/300?random=2" 
+            placeholder-src="https://via.placeholder.com/400x300?text=Loading..."
+            alt="Image with custom placeholder"
+            width="400"
+            height="300"
+          />
+        </div>
+      </div>
+
+      <div class="demo-row">
+        <div class="demo-item">
+          <h3>With Loading Delay</h3>
+          <LazyImage 
+            src="https://picsum.photos/400/300?random=3" 
+            alt="Image with loading delay"
+            delay="1000"
+            width="400"
+            height="300"
+          />
+          <p class="note">This image has a 1 second artificial loading delay</p>
+        </div>
+
+        <div class="demo-item">
+          <h3>With Custom Transition</h3>
+          <LazyImage 
+            src="https://picsum.photos/400/300?random=4" 
+            alt="Image with custom transition"
+            transition="slide"
+            width="400"
+            height="300"
+          />
+        </div>
+      </div>
+
+      <div class="code-example">
+        <pre><code>
+&lt;!-- Basic usage --&gt;
+&lt;LazyImage 
+  src="https://example.com/image.jpg" 
+  alt="Description of image"
+  width="400"
+  height="300"
+/&gt;
+
+&lt;!-- Advanced usage with options --&gt;
+&lt;LazyImage 
+  src="https://example.com/image.jpg" 
+  placeholder-src="https://example.com/placeholder.jpg"
+  alt="Description of image"
+  width="400"
+  height="300"
+  transition="fade"
+  delay="500"
+  error-src="https://example.com/error.jpg"
+/&gt;
+        </code></pre>
+      </div>
+    </section>
   </div>
 </template>
 
 <script setup lang="ts">
-import { Button, Card } from '../index';
+import { Button, Card, LazyImage } from '../index';
 </script>
 
 <style scoped>
@@ -232,5 +314,11 @@ code {
   flex-wrap: wrap;
   margin-top: 1rem;
 }
-</style>
 
+.note {
+  font-size: 0.875rem;
+  color: #666;
+  font-style: italic;
+  margin-top: 0.5rem;
+}
+</style>

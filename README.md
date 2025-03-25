@@ -23,6 +23,7 @@ A standardized Vue 3 component library for company-wide use. This library provid
 - [Components](#components)
   - [Button](#button)
   - [Card](#card)
+  - [LazyImage](#lazyimage)
 - [Customization](#customization)
 - [Development](#development)
 - [Contributing](#contributing)
@@ -145,6 +146,73 @@ A flexible card component with header, body, and footer sections.
     <Button variant="primary">Edit Profile</Button>
   </template>
 </Card>
+```
+
+### LazyImage
+
+A performance-optimized image component that supports lazy loading, placeholders, and error handling.
+
+#### Props
+
+| Prop          | Type                | Default     | Description                                           |
+|---------------|---------------------|-------------|-------------------------------------------------------|
+| src           | string              | required    | URL of the image to display                           |
+| alt           | string              | ''          | Alternative text for the image                        |
+| placeholder   | string              | ''          | URL of placeholder image to show during loading       |
+| width         | string \| number    | 'auto'      | Width of the image                                    |
+| height        | string \| number    | 'auto'      | Height of the image                                   |
+| loadDelay     | number              | 0           | Delay in milliseconds before loading the actual image |
+| transitionDuration | number         | 300         | Duration of fade-in transition in milliseconds        |
+| errorPlaceholder | string           | ''          | URL of image to display on error                      |
+| rootMargin    | string              | '0px'       | Root margin for Intersection Observer                 |
+| threshold     | number              | 0.1         | Visibility threshold for Intersection Observer        |
+| lazy          | boolean             | true        | Whether to enable lazy loading                        |
+| class         | string              | ''          | Additional CSS classes to apply                       |
+
+#### Events
+
+| Event         | Arguments           | Description                                     |
+|---------------|---------------------|-------------------------------------------------|
+| loaded        | Event               | Emitted when the image successfully loads       |
+| error         | Error               | Emitted when the image fails to load            |
+| intersecting  | boolean             | Emitted when the visibility of the image changes|
+
+#### Slots
+
+| Name          | Description                                            |
+|---------------|--------------------------------------------------------|
+| placeholder   | Custom placeholder content while the image is loading  |
+| error         | Custom content to display when image fails to load     |
+
+#### Example
+
+```vue
+<!-- Basic usage -->
+<LazyImage 
+  src="https://example.com/image.jpg" 
+  alt="Example image" 
+  placeholder="https://example.com/placeholder.jpg"
+/>
+
+<!-- Advanced usage with custom dimensions and error handling -->
+<LazyImage 
+  src="https://example.com/large-image.jpg" 
+  alt="Large landscape" 
+  :width="800" 
+  :height="600"
+  :loadDelay="200"
+  :transitionDuration="500"
+  errorPlaceholder="https://example.com/error-image.jpg"
+  @loaded="handleImageLoaded"
+  @error="handleImageError"
+>
+  <template #placeholder>
+    <div class="custom-loader">Loading...</div>
+  </template>
+  <template #error>
+    <div class="error-message">Failed to load image</div>
+  </template>
+</LazyImage>
 ```
 
 ## Customization

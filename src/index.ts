@@ -3,6 +3,7 @@
 // Import all components
 import Button from './components/Button.vue'
 import Card from './components/Card.vue'
+import LazyImage from './components/LazyImage.vue'
 import type { App } from 'vue'
 // Note: You may need to update these imports based on your actual component files
 // This is a starter template to export components from the library
@@ -14,6 +15,7 @@ import type { App } from 'vue'
 const components: Record<string, any> = {
   Button,
   Card,
+  LazyImage,
   // Modal,
   // Add more components here as they are created
 }
@@ -27,7 +29,7 @@ export function install(app: App): App {
 }
 
 // Named exports for individual component imports
-export { Button, Card }
+export { Button, Card, LazyImage }
 
 // Export the components object as a named export
 export { components }
